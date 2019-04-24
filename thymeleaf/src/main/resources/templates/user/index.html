@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Admin</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="form-control" id="seachName" onkeyup="seachName()" type="text"
+                           placeholder="Search by name">
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" id="seachMean" onkeyup="seachMean()" type="text"
+                           placeholder="Search by mean">
+                </div>
+            </div>
+            <br>
+            <table class="table table-bordered" id="table">
+                <tr>
+                    <th>Word</th>
+                    <th>Mean</th>
+                    <th>Type</th>
+                </tr>
+                <tbody id="myTable">
+                <tr>
+                    <td>ahihi</td>
+                    <td>adfdf</td>
+                    <td>adfacc</td>
+                </tr>
+                <tr>
+                    <td>ahihi</td>
+                    <td>cc</td>
+                    <td>cc</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <p>Add : </p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="form-control" th:type="text" placeholder="word">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" th:type="text" placeholder="word">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" th:type="text" placeholder="word">
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn btn-info" style="width: 100px;">Add</button>
+            <br>
+            <p>Delete : </p>
+            <form th:action="@{/delete/{key}}" method="get">
+                <input class="form-control" th:type="text" placeholder="word">
+            <br>
+            <button type="submit" class="btn btn-info" style="width: 100px;">Delete</button>
+            </form>
+            <br>
+            <p>Update : </p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="form-control" th:type="text" placeholder="word">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" th:type="text" placeholder="word">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" th:type="text" placeholder="word">
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn btn-info" style="width: 100px;">Update</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

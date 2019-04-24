@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="row">
+        <div class="col-sm-6">
+            <input class="form-control" id="seachName" onkeyup="seachName()" type="text" placeholder="Search by name">
+        </div>
+        <div class="col-sm-6">
+            <input class="form-control" id="seachMean" onkeyup="seachMean()" type="text" placeholder="Search by mean">
+        </div>
+    </div>
+    <br>
+    <table class="table table-bordered" id="table" style="display: inline-block;overflow: auto;height: 600px;">
+        <tr>
+            <th style="width: 30%">Word</th>
+            <th style="width: 100%">Mean</th>
+            <th style="width: 100%">Type</th>
+        </tr>
+        <tbody id="myTable">
+        <th:block th:each="word : ${words}">
+            <tr>
+                <td><input th:value="${word.getKeyWord()}" style="border: none; background: none; width: auto;" disabled/></td>
+                <td><input th:value="${word.getMean()}" style="border: none; background: none; width: auto;" disabled/></td>
+                <td><input th:value="${word.getType()}" style="border: none; background: none; width: auto" disabled/></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function seachName() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("seachName");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function seachMean() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("seachMean");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
