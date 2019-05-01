@@ -6,11 +6,15 @@
     <footer>
         <div class="container">
             <p>
-                &copy; Memorynotfound.com
+                &copy; com.topica.vn
                 <span sec:authorize="isAuthenticated()" style="display: inline-block;">
                     | Logged user: <span sec:authentication="name"></span> |
                     Roles: <span sec:authentication="principal.authorities"></span> |
+                    <a th:href="@{/user}">Manager</a> |
                     <a th:href="@{/logout}">Sign Out</a>
+                </span>
+                <span sec:authorize="!isAuthenticated()" style="display: inline-block;">
+                    <a th:href="@{/login}">Login</a>
                 </span>
             </p>
         </div>
@@ -18,7 +22,8 @@
 
     <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </th:block>
 </body>
 </html>

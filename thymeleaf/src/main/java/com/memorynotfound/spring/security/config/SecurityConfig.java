@@ -18,41 +18,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers(
-                            "/",
-                            "/js/**",
-                            "/css/**",
-                            "/img/**",
-                            "/webjars/**").permitAll()
-                    .antMatchers("/user/**").permitAll()
-                    .antMatchers("/init/data").permitAll()
-                    .antMatchers("/delete/{key}").permitAll()
-                    .antMatchers("/insert/{key_word}/{mean}/{type}").permitAll()
-                    .antMatchers("/update/{id}/{type}").permitAll()
-                    .antMatchers("/getdata").permitAll()
+                .antMatchers(
+                        "/",
+                        "/home/{word}",
+                        "/suggest/{key}",
+                        "/js/**",
+                        "/css/**",
+                        "/img/**",
+                        "/webjars/**").permitAll()
+                .antMatchers(
+                        "/user/**",
+                        "/init/data",
+                        "/delete/{key}",
+                        "/insert",
+                        "/update/").hasRole("MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
+                .loginPage("/login")
+                .permitAll()
                 .and()
                 .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login?logout")
-                    .permitAll()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
                 .and()
                 .exceptionHandling()
-                    .accessDeniedHandler(accessDeniedHandler);
+                .accessDeniedHandler(accessDeniedHandler);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
-            .and()
-                .withUser("manager").password("password").roles("MANAGER");
+                .withUser("thanglong").password("thanglong").roles("MANAGER");
     }
 
 }

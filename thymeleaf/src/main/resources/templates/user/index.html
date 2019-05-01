@@ -8,75 +8,64 @@
 <body>
 <div layout:fragment="content" th:remove="tag">
     <div class="row">
-        <div class="col-sm-6">
-            <div class="row">
-                <div class="col-sm-6">
-                    <input class="form-control" id="seachName" onkeyup="seachName()" type="text"
-                           placeholder="Search by name">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8" style="width: 100%; height: 620px;">
+            <h4>Add : </h4>
+            <form method="post" th:action="@{/insert}">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input name="word" class="form-control" th:type="text" placeholder="word">
+                    </div>
+                    <div class="col-sm-4">
+                        <input name="mean" class="form-control" th:type="text" placeholder="mean">
+                    </div>
+                    <div class="col-sm-4">
+                        <input name="type" class="form-control" th:type="text" placeholder="type">
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <input class="form-control" id="seachMean" onkeyup="seachMean()" type="text"
-                           placeholder="Search by mean">
-                </div>
-            </div>
-            <br>
-            <table class="table table-bordered" id="table">
-                <tr>
-                    <th>Word</th>
-                    <th>Mean</th>
-                    <th>Type</th>
-                </tr>
-                <tbody id="myTable">
-                <tr>
-                    <td>ahihi</td>
-                    <td>adfdf</td>
-                    <td>adfacc</td>
-                </tr>
-                <tr>
-                    <td>ahihi</td>
-                    <td>cc</td>
-                    <td>cc</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-6">
-            <p>Add : </p>
-            <div class="row">
-                <div class="col-sm-4">
-                    <input class="form-control" th:type="text" placeholder="word">
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control" th:type="text" placeholder="word">
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control" th:type="text" placeholder="word">
-                </div>
-            </div>
-            <br>
-            <button type="button" class="btn btn-info" style="width: 100px;">Add</button>
-            <br>
-            <p>Delete : </p>
-            <form th:action="@{/delete/{key}}" method="get">
-                <input class="form-control" th:type="text" placeholder="word">
-            <br>
-            <button type="submit" class="btn btn-info" style="width: 100px;">Delete</button>
+                <br>
+                <button type="submit" class="btn btn-info" style="width: 100px;">Add</button>
+                <br>
             </form>
             <br>
-            <p>Update : </p>
-            <div class="row">
-                <div class="col-sm-4">
-                    <input class="form-control" th:type="text" placeholder="word">
+            <h4>Delete : </h4><p><i style="color: red">(by ID or Word)</i></p>
+            <form th:action="@{/delete}" method="post">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input name="id" class="form-control" th:type="text" placeholder="id" value="0">
+                    </div>
+                    <div class="col-sm-8">
+                        <input name="word" class="form-control" th:type="text" placeholder="word" value="">
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    <input class="form-control" th:type="text" placeholder="word">
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control" th:type="text" placeholder="word">
-                </div>
-            </div>
+                <br>
+                <button type="submit" class="btn btn-info" style="width: 100px;">Delete</button>
+            </form>
             <br>
-            <button type="button" class="btn btn-info" style="width: 100px;">Update</button>
+            <h4>Update : </h4>
+            <form method="post" th:action="@{/update}">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <input name="id" class="form-control" th:type="text" placeholder="id">
+                    </div>
+                    <div class="col-sm-3">
+                        <input name="word" class="form-control" th:type="text" placeholder="word">
+                    </div>
+                    <div class="col-sm-3">
+                        <input name="mean" class="form-control" th:type="text" placeholder="mean">
+                    </div>
+                    <div class="col-sm-3">
+                        <select name="type" class="form-control">
+                            <option value="0"></option>
+                            <option value="1">VIET - ANH</option>
+                            <option value="2">ANH - VIET</option>
+                        </select>
+                    </div>
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-info" style="width: 100px;">Update</button>
+            </form>
         </div>
     </div>
 </div>

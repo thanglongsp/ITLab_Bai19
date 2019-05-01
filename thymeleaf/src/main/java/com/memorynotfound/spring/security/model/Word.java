@@ -1,8 +1,6 @@
 package com.memorynotfound.spring.security.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Word {
