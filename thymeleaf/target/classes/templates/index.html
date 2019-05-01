@@ -8,8 +8,15 @@
 <div layout:fragment="content" th:remove="tag">
     <div class="row">
         <div class="col-sm-6">
-            <input class="form-control" id="searchName" onkeyup="suggest()" type="text"
+            <input class="form-control" list="list" id="searchName" onkeypress="suggest(event)" type="text"
                    placeholder="Search by name">
+            <datalist id="list">
+                <option id="suggest0" value=""></option>
+                <option id="suggest1" value=""></option>
+                <option id="suggest2" value=""></option>
+                <option id="suggest3" value=""></option>
+                <option id="suggest4" value=""></option>
+            </datalist>
         </div>
         <button type="button" class="btn btn-info" onclick="search()">Search</button>
     </div>
@@ -45,7 +52,7 @@
         window.location = url;
     }
 
-    function suggest() {
+    function suggest(event) {
         var test = document.getElementById('searchName').value;
         $("#searchName").autocomplete({
             source: function () {
@@ -55,10 +62,13 @@
                     url: url,
                     success: function (data) {
                         if (data == "[]")
-                            $("#searchName").val("");
+                            $("#suggest").val("");
                         else {
                             var value = data.toString();
-                            $("#searchName").val(data.toString().substring(2, value.length - 2));
+                            value = value.substring(2, value.length - 2);
+                            var listSuggest = value.split("\",\"")
+                            for (var i = 0; i < 5; i++)
+                                $("#suggest" + i).val(listSuggest[i]);
                         }
                     },
                     error: function () {

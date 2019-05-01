@@ -15,6 +15,6 @@ public interface WordRepository extends JpaRepository<Word, Integer> {
     @Query("select word from Word word where word.keyWord = :key")
     Word findByWord(@Param("key") String key);
 
-    @Query(value = "SELECT * FROM Word WHERE key_word like ?1% LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM Word WHERE key_word like ?1% LIMIT 5", nativeQuery = true)
     List<Word> suggestWord(@Param("key") String key);
 }
