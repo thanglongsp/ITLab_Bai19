@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 @Service
 public interface WordSevice extends Serializable {
-    public boolean insertWord(Word word);
+    boolean insertWord(Word word);
 
-    public Word findById(int id);
+    Word findById(int id);
 
-    public boolean update(Word word);
+    boolean update(Word word);
 }

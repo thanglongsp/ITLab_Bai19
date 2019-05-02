@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface WordRepository extends JpaRepository<Word, Integer> {
-    @Query("select word from Word word where word.keyWord = :key")
+    @Query(value = "SELECT * FROM Word WHERE key_word like ?1% LIMIT 5", nativeQuery = true)
     List<Word> findByKey(@Param("key") String key);
 
     @Query("select word from Word word where word.keyWord = :key")

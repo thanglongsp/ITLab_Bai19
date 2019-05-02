@@ -50,7 +50,11 @@ public class HomeController {
 
     // Home guest
     @GetMapping("/")
-    public String home() {
+    public String homeInit() {
+        return "redirect:/home/all";
+    }
+    @GetMapping("/home/")
+    public String homeNull() {
         return "redirect:/home/all";
     }
 
